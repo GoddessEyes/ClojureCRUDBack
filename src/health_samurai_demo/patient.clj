@@ -1,6 +1,6 @@
 (ns health-samurai-demo.patient
   (:require
-   [health-samurai-demo.database :refer [allPatients insertPatient deletePatient getPatientById]]
+   [health-samurai-demo.database :refer [allPatients insertPatient deletePatient getPatientById updatePatient]]
    [schema.core :as s]))
 
 (require
@@ -26,8 +26,11 @@
 (defn delete-patient-handler [delete-patient-req]
   (ok {:result (deletePatient delete-patient-req)}))
 
-(defn get-patient-by-id [patient-id]
+(defn get-patient-by-id-handler [patient-id]
   (ok {:result (getPatientById patient-id)}))
+
+(defn update-patient-handler [patient-id update-patient-req]
+  (ok {:result (updatePatient patient-id update-patient-req)}))
 
 (def patient-routes
   [(GET "/patients" []
@@ -39,7 +42,7 @@
    (GET "/patients/:patient-id" [patient-id]
      :tags ["api"]
      :summary "adds two numbers together"
-     (get-patient-by-id patient-id))
+     (get-patient-by-id-handler patient-id))
 
    (POST "/create_patients" []
      :tags ["api"]
@@ -49,4 +52,9 @@
    (DELETE "/delete_patients" []
      :tags ["api"]
      :body [delete-patient-req IdSchema]
-     (delete-patient-handler delete-patient-req))])
+     (delete-patient-handler delete-patient-req))
+
+   (PATCH "/update_patients/:patient-id" [patient-id]
+     :tags ["api"]
+     :body [update-patient-req PatientSchema]
+     (update-patient-handler patient-id update-patient-req))])
