@@ -7,7 +7,7 @@
                  [org.clojure/clojure "1.9.0"]
                  [ikitommi/linked "1.3.1-alpha1"]
                  [clj-time "0.12.0"]
-
+                 [ring-cors "0.1.13"]
                  ; Web
                  [prismatic/schema "1.1.9"]
                  [metosin/compojure-api "2.0.0-alpha31"]
@@ -21,4 +21,5 @@
             [lein-ring "0.8.10"]
             [lein-cljfmt "0.6.8"]
             ]
+  :main health-samurai-demo.core
   :repl-options {:init-ns health-samurai-demo.core})
