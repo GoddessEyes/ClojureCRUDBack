@@ -6,6 +6,8 @@
   :dependencies [
                  [org.clojure/clojure "1.9.0"]
                  [ikitommi/linked "1.3.1-alpha1"]
+                 [clj-time "0.12.0"]
+
                  ; Web
                  [prismatic/schema "1.1.9"]
                  [metosin/compojure-api "2.0.0-alpha31"]
