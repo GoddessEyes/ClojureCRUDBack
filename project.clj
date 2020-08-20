@@ -8,12 +8,10 @@
                  [ikitommi/linked "1.3.1-alpha1"]
                  [clj-time "0.12.0"]
                  [ring-cors "0.1.13"]
-                 ; Web
                  [prismatic/schema "1.1.9"]
                  [metosin/compojure-api "2.0.0-alpha31"]
                  [ring/ring-jetty-adapter "1.6.3"]
-
-                 ; Database
+                 [lynxeyes/dotenv "1.1.0"]
                  [toucan "1.1.9"]
                  [org.postgresql/postgresql "42.2.4"]]
 

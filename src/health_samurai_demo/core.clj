@@ -2,14 +2,10 @@
 
 (require '[ring.adapter.jetty :refer [run-jetty]]
          '[compojure.api.sweet :refer [api routes]]
-         '[health-samurai-demo.patient :refer [patient-routes]]
-         '[ring.middleware.cors :refer [wrap-cors]])
+         '[health-samurai-demo.routes :refer [patient-routes]]
+         '[ring.middleware.cors :refer [wrap-cors]]
+         '[health-samurai-demo.config :refer [app-port app-host swagger-config]])
 
-(def swagger-config
-  {:ui "/swagger"
-   :spec "/swagger.json"
-   :options {:ui {:validatorUrl nil}
-             :data {:info {:version "1.0.0", :title "Restful CRUD API"}}}})
 
 (def app
   (-> (api {:swagger swagger-config} (apply routes patient-routes))
@@ -17,4 +13,4 @@
 
 (defn -main
   [& args]
-  (run-jetty app {:port 3000}))
+  (run-jetty app {:port app-port :host app-host}))
