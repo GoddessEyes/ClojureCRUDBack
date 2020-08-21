@@ -1,1 +1,1 @@
-web: java -jar target/health-samurai-demo-standalone.jar
+web: java $JVM_OPTS -jar target/health-samurai-demo-standalone.jar
