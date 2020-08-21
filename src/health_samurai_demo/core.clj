@@ -1,11 +1,11 @@
-(ns health-samurai-demo.core)
+(ns health-samurai-demo.core
+  (:gen-class))
 
 (require '[ring.adapter.jetty :refer [run-jetty]]
          '[compojure.api.sweet :refer [api routes]]
          '[health-samurai-demo.routes :refer [patient-routes]]
          '[ring.middleware.cors :refer [wrap-cors]]
          '[health-samurai-demo.config :refer [app-port app-host swagger-config]])
-
 
 (def app
   (-> (api {:swagger swagger-config} (apply routes patient-routes))
