@@ -19,6 +19,7 @@
             [lein-ring "0.8.10"]
             [lein-cljfmt "0.6.8"]
             ]
+  :min-lein-version "2.9.3"
   :main ^:skip-aot health-samurai-demo.core
   :profiles {:uberjar {:aot :all}}
   :repl-options {:init-ns health-samurai-demo.core})
