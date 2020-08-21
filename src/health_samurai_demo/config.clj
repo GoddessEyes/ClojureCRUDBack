@@ -9,7 +9,7 @@
            :zeroDateTimeBehaviour "convertToNull"})
   (prn "DB connection: " db))
 
-(def app-port (Integer/parseInt (env "PORT")))
+(def app-port (Integer/parseInt (or (env "PORT") "8000")))
 (def app-host (env "HOST"))
 (prn (str "HOST: " "http://" app-host ":" app-port))
 (prn (str "Swagger Docs: " "http://" app-host ":" app-port "/api/v1/swagger"))
