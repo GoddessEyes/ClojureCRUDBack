@@ -13,4 +13,4 @@
 
 (defn -main
   [& args]
-  (run-jetty app {:port app-port :host app-host}))
+  (run-jetty app {:port app-port :host app-host :join? false}))
