@@ -9,7 +9,7 @@
            :zeroDateTimeBehaviour "convertToNull"})
   (prn "DB connection: " db))
 
-(let [port (env "APP_PORT") host (env "APP_HOST")]
+(let [port (env "PORT") host (env "HOST")]
   (def app-port (Integer/parseInt port))
   (def app-host host)
   (prn (str "HOST: " "http://" app-host ":" app-port))
