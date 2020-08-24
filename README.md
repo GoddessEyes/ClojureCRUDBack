@@ -1,4 +1,5 @@
-![Clojure CI](https://github.com/GoddessEyes/HealthSamuraiDemo/workflows/Clojure%20CI/badge.svg)
+![Clojure test](https://github.com/GoddessEyes/HealthSamuraiDemo/workflows/Clojure%20test/badge.svg)
+![Clojure build and style guide](https://github.com/GoddessEyes/HealthSamuraiDemo/workflows/Clojure%20build%20and%20style%20guide/badge.svg)
 
 # health_samurai_demo
 
