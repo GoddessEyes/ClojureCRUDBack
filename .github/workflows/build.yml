@@ -8,12 +8,29 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    
     steps:
     - name: Install dependencies
       run: lein deps
 
     - name: cljfmt-check
       run: lein cljfmt check
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup PostgreSQL
+        uses: Harmon758/postgresql-action@v1.0.0
+        with:
+          POSTGRES_DB: "test"
+          postgresql db: "test"
+          POSTGRES_USER: "test"
+          postgresql user: "test"
+          POSTGRES_PASSWORD: "test"
+          postgresql password: "test"
+
+      - name: Install dependencies
+        run: lein deps
+
+      - name: Run tests
+        run: lein test
