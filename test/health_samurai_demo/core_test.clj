@@ -3,8 +3,7 @@
             [health-samurai-demo.core :refer :all]
             [health-samurai-demo.crud :refer [insert-patient get-patient-by-id all-patients delete-patient update-patient]]
             [clojure.java.jdbc :as jdbc]
-            [clojure.tools.logging :refer [info]]
-            [clj-http.client :as client]))
+            [clojure.tools.logging :refer [info]]))
 
 (def db-spec {:subprotocol "postgresql"
               :subname "test"
@@ -51,5 +50,4 @@
       (info (get-patient-by-id db-spec "1")))
     (info "Deleting patient with id=1")
     (delete-patient db-spec "1")
-    (jdbc/db-do-commands db-spec drop-patient-table-ddl)
-    ))
+    (jdbc/db-do-commands db-spec drop-patient-table-ddl)))
