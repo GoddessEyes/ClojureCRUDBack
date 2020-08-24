@@ -10,6 +10,9 @@ jobs:
   cljfmt:
     runs-on: ubuntu-latest
     steps:
+    
+    - uses: actions/checkout@v2
+
     - name: Install dependencies
       run: lein deps
 
@@ -28,6 +31,8 @@ jobs:
         postgresql user: "test"
         POSTGRES_PASSWORD: "test"
         postgresql password: "test"
+
+    - uses: actions/checkout@v2
 
     - name: Install dependencies
       run: lein deps
