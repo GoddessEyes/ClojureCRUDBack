@@ -2,8 +2,7 @@
   (:require [clojure.test :refer :all]
             [health-samurai-demo.core :refer :all]
             [health-samurai-demo.crud :refer [insert-patient get-patient-by-id all-patients delete-patient update-patient]]
-            [clojure.java.jdbc :as jdbc]
-            [clojure.tools.logging :refer [info]]))
+            [clojure.java.jdbc :as jdbc]))
 
 (def db-spec {:subprotocol "postgresql"
               :subname "test"
@@ -36,18 +35,12 @@
 
 (deftest patient-table-test
   (testing "Test for patient table crud actions."
-    (jdbc/db-do-commands db-spec [create-patient-table-ddl])
-    (info "Create patient")
+    (is (= (jdbc/db-do-commands db-spec [create-patient-table-ddl]) [0]) "Creating table. Must be return 0.")
     (let [patient (insert-patient db-spec patient-schema)]
-      (info patient)
-      (info "Fetching patient by id:")
-      (is patient (get-patient-by-id db-spec (str (:id (first patient)))))
-      (info "Fetching all patient")
-      (is patient (all-patients db-spec)))
+      (is (= (get (first patient) :id) 1) "Check new patient entry id=1")
+      (is (= patient (get-patient-by-id db-spec (str (:id (first patient))))) "Fetching patient by id")
+      (is (= patient (all-patients db-spec))) "Fetching all patient. Is equal `patient by id` when one patient entry.")
     (let [updated-patient (update-patient db-spec "1" update-patient-schema)]
-      (info "Result update action (must be 1): " updated-patient)
-      (is updated-patient 1)
-      (info (get-patient-by-id db-spec "1")))
-    (info "Deleting patient with id=1")
-    (delete-patient db-spec "1")
-    (jdbc/db-do-commands db-spec drop-patient-table-ddl)))
+      (is (= updated-patient [1]) "Result update action (must be 1)"))
+    (is (= (delete-patient db-spec {:id 1}) [1]) "Deleting patient id=1")
+    (is (= (jdbc/db-do-commands db-spec drop-patient-table-ddl) [0]) "Drop table. Must be return 0.")))
